@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos PontoBat™</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #003366; color: white; padding: 20px; position: relative; }
+    #cart { position: absolute; top: 20px; right: 20px; font-weight: bold; }
+    nav { background: #ddd; padding: 10px; text-align: center; }
+    nav a { margin: 0 15px; text-decoration: none; color: #003366; font-weight: bold; }
+    main { padding: 30px; max-width: 1000px; margin: auto; }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .product { background: white; padding: 15px; border: 1px solid #ccc; text-align: center; }
+    .product img { width: 100%; height: auto; }
+    .price { color: #cc0000; font-weight: bold; margin: 10px 0; }
+    .buy-button { background: #00ccff; color: white; border: none; padding: 10px; margin: 5px; cursor: pointer; }
+    .buy-button:hover { background: #003366; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📦 Produtos PontoBat™</h1>
+    <div id="cart">🛒 Carrinho: <span id="cart-count">0</span>/5</div>
+  </header>
+
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="Sistemas.html">💾 Sistemas</a>
+    <a href="Aplicativos.html">💿 Aplicativos</a>
+    <a href="Produtos.html">📒 Produtos</a>
+    <a href="https://guilhermealbuquerque9.github.io./PontoBat-Sistemas">🌐 Site</a>
+  </nav>
+
+  <main>
+    <h2>🛍️ Nossa Coleção</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="Caderno_PontoBat.png" alt="Caderno">
+        <h3>Caderno PontoBat</h3>
+        <p class="price">R$ 10,00</p>
+        <button class="buy-button" onclick="addToCart()">Adicionar ao carrinho</button>
+        <button class="buy-button" onclick="buy('Caderno PontoBat', 24.90)">Comprar</button>
+      </div>
+      <div class="product">
+        <img src="Adesivo_PontoBat.png" alt="Adesivo">
+        <h3>Adesivos PontoBat</h3>
+        <p class="price">R$ 5,00</p>
+        <button class="buy-button" onclick="addToCart()">Adicionar ao carrinho</button>
+        <button class="buy-button" onclick="buy('Adesivos PontoBat', 9.90)">Comprar</button>
+      </div>
+      <div class="product">
+        <img src="Poster_PontoBat.png" alt="Poster">
+        <h3>Poster PontoBat</h3>
+        <p class="price">R$ 20,00</p>
+        <button class="buy-button" onclick="addToCart()">Adicionar ao carrinho</button>
+        <button class="buy-button" onclick="buy('Poster PontoBat', 20.00)">Comprar</button>
+      </div>
+      <div class="product">
+        <img src="Caneta_PontoBat.png" alt="Caneta">
+        <h3>Caneta PontoBat</h3>
+        <p class="price">R$ 9,90</p>
+        <button class="buy-button" onclick="addToCart()">Adicionar ao carrinho</button>
+        <button class="buy-button" onclick="buy('Caneta PontoBat', 9.90)">Comprar</button>
+      </div>
+      <!-- Adicione mais produtos aqui -->
+    </div>
+  </main>
+
+  <script>
+    let cartCount = 0;
+    function addToCart() {
+      if (cartCount < 5) {
+        cartCount++;
+        document.getElementById('cart-count').textContent = cartCount;
+      } else {
+        alert("Carrinho cheio! Máximo de 5 itens.");
+      }
+    }
+
+    function buy(produto, preco) {
+      window.location.href = `Comprar.html?produto=${encodeURIComponent(produto)}&preco=${preco}`;
+    }
+  </script>
+</body>
+</html>

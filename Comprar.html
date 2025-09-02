@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Finalizar Compra</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #f9f9f9; }
+    h2 { color: #003366; }
+    label { display: block; margin-top: 15px; }
+    input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+    button { margin-top: 20px; padding: 10px 15px; background: #00ccff; color: white; border: none; cursor: pointer; }
+    button:hover { background: #003366; }
+  </style>
+</head>
+<body>
+  <h2>🧾 Finalizar Compra</h2>
+  <p>Produto: <span id="produto-nome"></span></p>
+  <p>Preço: R$ <span id="produto-preco"></span></p>
+
+  <form id="form-compra">
+    <label>Nome completo:</label>
+    <input type="text" name="nome" required>
+
+    <label>Email:</label>
+    <input type="email" name="email" required>
+
+    <label>Endereço de entrega:</label>
+    <textarea name="endereco" required></textarea>
+
+    <button type="submit">Confirmar Pedido</button>
+  </form>
+
+  <script>
+    emailjs.init("2Nb7bLDPb1KNhPb7b"); // Substitua pelo seu User ID do EmailJS
+
+    const params = new URLSearchParams(window.location.search);
+    const produto = params.get('produto');
+    const preco = params.get('preco');
+
+    document.getElementById('produto-nome').textContent = produto;
+    document.getElementById('produto-preco').textContent = preco;
+
+    document.getElementById('form-compra').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const templateParams = {
+        produto: produto,
+        preco: preco,
+        nome: form.nome.value,
+        email: form.email.value,
+        endereco: form.endereco.value
+      };
+
+      emailjs.send("service_a1qg3vs", "5khjvrh", templateParams)
+        .then(() => {
+          alert("Pedido enviado com sucesso! Você receberá uma confirmação por e-mail.");
+          form.reset();
+        }, (error) => {
+          alert("Erro ao enviar pedido: " + error.text);
+        });
+    });
+  </script>
+</body>
+</html>
