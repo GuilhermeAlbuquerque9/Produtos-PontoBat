@@ -15,10 +15,10 @@ Este é um projeto simples e funcional de um site de compras da empresa PontoBat
 ## 🧰 Tecnologias Utilizadas
 
 - HTML5
-- CSS3
 - JavaScript
 - [EmailJS](https://www.emailjs.com)
 - GitHub Pages
+- Visual Studio Code
 
 ---
 
